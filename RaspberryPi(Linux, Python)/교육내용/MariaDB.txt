@@ -1,0 +1,55 @@
+============================================== 
+=================== Maria DB =================== 
+============================================== 
+
+*** MariaDB 접속
+ sudo mysql -uroot -p0000
+
+* 데이터베이스 - 테이블 - 칼럼, 레코드
+칼럼 : 열,속성 : 항목 == 특정데이터를 분류하기 위해서
+레코드 : 기록 == 가로행   
+프로젝트를 통해 실무를 간접적으로 체험(인턴)
+
+sudo apt-get update
+sudo apt-get install mariadb-server mariadb-client
+
+sudo mysql -uroot == DB접속
+show databases; == DB 파일을 보여주라
+CREATE DATABASE [	] == 파일생성
+DROP DATABASE [		] == 파일제거
+system ls == 파일 목록
+system clear == 클리어
+
+use [	] : db로 이동
+
+CREATE TABLE IF NOT EXISTS ESTDB.USER_INFO
+## IF NOT EXISTS를 사용했기 때문에 이미 존재하면 WARNING으로 처리
+
+FLUSH PRIVILEGES; : 저장 !!!
+
+*참고
+https://estenpark.tistory.com/358
+
+*************************************
+**********  DB 그래픽 세팅 ********** 
+*************************************
+1. mariaDB 설정
+ == GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '===암호===';
+ == % : ip , ===암호=== : 암호
+ == SELECT host, user FROM user;  //이걸로 확인
+2. 설정 파일 수정
+ == sudo vi /etc/mysql/mariadb.conf.d/50-server.cnf
+ == bind 부분  주소를 = * 로 변경
+3. 방화벽 설정
+ == sudo iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
+ == sudo iptables -A OUTPUT -p tcp --dport 3306 -j ACCEPT
+4. mysql 다시 시작
+sudo service mysql restart
+
+
+
+
+
+
+
+

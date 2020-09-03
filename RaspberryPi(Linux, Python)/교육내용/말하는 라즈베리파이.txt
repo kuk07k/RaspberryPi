@@ -1,0 +1,35 @@
+*******************************
+***** 말하는 라즈베리파이 *****
+*******************************
+
+1. 이어폰, 헤드폰, 외부 스피커
+
+2. 외부 스피커 연결시, raspi-config로 라즈베리 파이 설정을 변경해줘야함
+
+2-(1). 오디오를 헤드폰으로 들을 수 있도록 설정
+== sudo raspi-config
+== 9 Advanced Options 선택
+== A9 Audio 선택
+== 1 Force 3.5mm ('headphone') jack 선택
+
+2-(2). 오디오 라이브러리 설치
+== sudo apt-get update
+== sudo apt-get install festival
+== https://packages.debian.org/jessie/festival-voice : 목소리 선택
+== echo "Good Morning!" | festival --tts
+
+3. 페스티벌 라이브러리
+== sudo apt-get install python python-dev festival festival-dev
+== sudo pip install pyfestival
+== festival.sayText("		") : 사람 목소리
+== festival.sayFile("VoiceTest.txt") : 파일에 담긴 텍스트를 음성으로
+== VoiceTest.txt 파일에 원하는 문장 작성
+
+=========== 작성코드 ===========
+import festival
+
+festival.sayText("I am Rapberry Pi")
+festival.sayFile("VoiceTest.txt")
+=============================
+
+== python VoiceTest.txt
